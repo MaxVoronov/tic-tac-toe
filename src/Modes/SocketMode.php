@@ -38,7 +38,12 @@ class SocketMode implements ModeInterface
         socket_set_option($this->socket, SOL_SOCKET, SO_REUSEADDR, 1);    // ???
         if (!socket_bind($this->socket, $this->host, $this->port)) {
             $socketError = socket_strerror(socket_last_error($this->socket));
-            throw new SocketException(sprintf('Can\'t bind socket to %s:%s: %s', $this->host, $this->port, $socketError));
+            throw new SocketException(sprintf(
+                'Can\'t bind socket to %s:%s: %s',
+                $this->host,
+                $this->port,
+                $socketError
+            ));
         }
 
         if (!socket_listen($this->socket, 2)) {

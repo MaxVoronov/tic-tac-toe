@@ -50,7 +50,7 @@ class Board
      */
     public function getFreeCells(): array
     {
-        return array_filter($this->board, function($val){
+        return array_filter($this->board, function ($val) {
             return empty($val);
         });
     }
