@@ -72,7 +72,7 @@ class Game
                 $this->io->write('AI is making move... ');
                 $move = $this->getNextMove($this->playerAi);
                 $cell = $move['idx'];
-                $this->io->writeln($cell);
+                $this->io->writeln($cell + 1);
             }
 
             $this->board->pickCell($cell, $currentPlayer);

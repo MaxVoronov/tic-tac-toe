@@ -4,14 +4,25 @@ declare(strict_types=1);
 
 namespace App\IO;
 
-class CliIO implements IOInterface
+class SocketIO implements IOInterface
 {
+    protected $client;
+
+    public function __construct($client)
+    {
+        $this->client = $client;
+    }
+
     /**
      * @inheritdoc
      */
     public function readln($message = ''): string
     {
-        return readline($message);
+        if (!empty($message)) {
+            $this->write($message);
+        }
+
+        return trim(socket_read($this->client, 4096, PHP_BINARY_READ));
     }
 
     /**
@@ -19,7 +30,7 @@ class CliIO implements IOInterface
      */
     public function write($message): IOInterface
     {
-        echo $message;
+        socket_write($this->client, $message);
 
         return $this;
     }
@@ -39,6 +50,8 @@ class CliIO implements IOInterface
      */
     public function emptyLine(): IOInterface
     {
-        return $this->writeln('');
+        $this->writeln('');
+
+        return $this;
     }
 }
