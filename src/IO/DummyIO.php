@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace App\IO;
 
-class CliIO implements IOInterface
+class DummyIO implements IOInterface
 {
     /**
      * @inheritdoc
      */
     public function readln(string $message = ''): string
     {
-        return readline($message);
+        return '';
     }
 
     /**
@@ -19,8 +19,6 @@ class CliIO implements IOInterface
      */
     public function write($message): IOInterface
     {
-        echo $message;
-
         return $this;
     }
 
@@ -29,8 +27,6 @@ class CliIO implements IOInterface
      */
     public function writeln($message): IOInterface
     {
-        $this->write($message . PHP_EOL);
-
         return $this;
     }
 
@@ -39,6 +35,6 @@ class CliIO implements IOInterface
      */
     public function emptyLine(): IOInterface
     {
-        return $this->writeln('');
+        return $this;
     }
 }

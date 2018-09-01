@@ -12,7 +12,7 @@ interface IOInterface
      * @param string $message
      * @return string
      */
-    public function readln($message = ''): string;
+    public function readln(string $message = ''): string;
 
     /**
      * Output simple string

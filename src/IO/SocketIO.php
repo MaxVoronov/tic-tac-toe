@@ -16,7 +16,7 @@ class SocketIO implements IOInterface
     /**
      * @inheritdoc
      */
-    public function readln($message = ''): string
+    public function readln(string $message = ''): string
     {
         if (!empty($message)) {
             $this->write($message);
